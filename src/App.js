@@ -1,32 +1,47 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './components/navbar';
-import Footer from './components/footer';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/layout";
 import Home from './components/home';
 import Calendar from './components/Calendar';
 import History from './components/History';
 import Login from './components/login';
+import React from 'react';
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleLogin = () => {
-    // Your login logic
-    setIsAuthenticated(true);
+      
+return ( 
+
+<Router>
+  <Routes>
+    <Route path="/" element={<Login />} />
+        <Route
+          path="/home"
+          element={
+              <Layout>
+                  <Home />
+              </Layout>
+          }
+      />
+        <Route
+          path="/calendar"
+          element={
+              <Layout>
+                  <Calendar />
+              </Layout>
+          }
+      />
+      <Route
+          path="/history"
+          element={
+              <Layout>
+                  <History />
+              </Layout>
+          }
+      />
+    </Routes>
+  </Router>
+      
+      );
   };
-
-  return (
-    <Router>
-      {isAuthenticated && <NavBar />}
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/calendar" element={<Calendar />} />
-        <Route path="/history" element={<History />} />
-        <Route path="/login" element={<Login onClick={handleLogin} />} />
-      </Routes>
-      {isAuthenticated && <Footer />}
-    </Router>
-  );
-};
 
 export default App;
