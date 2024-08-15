@@ -4,6 +4,7 @@ import Home from './components/home';
 import Calendar from './components/Calendar';
 import History from './components/History';
 import Login from './components/login';
+import Signin from "./components/signin";
 import React from 'react';
 
 const App = () => {
@@ -13,7 +14,16 @@ return (
 
 <Router>
   <Routes>
-    <Route path="/" element={<Login />} />
+    <Route path="/login" element={<Login />} />
+        <Route
+          path="/home"
+          element={
+              <Layout>
+                  <Home />
+              </Layout>
+          }
+      />
+          <Route path="/signin" element={<Signin />} />
         <Route
           path="/home"
           element={

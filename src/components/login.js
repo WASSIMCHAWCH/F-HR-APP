@@ -1,23 +1,33 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
+import axios from 'axios';
 
-function Login() {
-    const [matricul, setMatricul] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+function Signin() {
+    const [values, setValues] = useState({
+        matricule: '',
+        password: ''
+    });
+    
+    const [error, setError] = useState('');
 
-    const navigate = useNavigate(); // Correct usage of useNavigate
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        // Simple authentication logic (replace with real authentication)
-        if (matricul === "123" && password === "password") {
-            navigate("/home"); // Redirect to the home page upon successful login
-        } else {
-            setError("Invalid matricul or password");
-        }
-    };
+    const handleLogin = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:5000/login', values)
+        .then(res => {
+            if(res.data.Status === "Success"){
+                navigate('/home'); 
+            }else{
+                alert("Error");
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            setError('Login failed. Please check your credentials.');
+        });
+    }
 
     return (
         <div className="login-container">
@@ -28,11 +38,11 @@ function Login() {
                     <label>Matricul</label>
                     <input
                         type="number"
-                        value={matricul}
-                        onChange={(e) => setMatricul(e.target.value)}
-                        placeholder="matricul"
+                        min="1"
+                        value={values.matricule}
+                        onChange={e => setValues({...values, matricule : e.target.value})}
+                        placeholder="matricule"
                         required
-                        maxLength="3" 
                         onInput={(e) => {
                             if (e.target.value.length > 3) {
                                 e.target.value = e.target.value.slice(0, 3);
@@ -44,8 +54,8 @@ function Login() {
                     <label>Mot de passe</label>
                     <input
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={values.password}
+                        onChange={e => setValues({...values, password : e.target.value})}
                         placeholder="Enter your password"
                         required
                     />
@@ -58,4 +68,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Signin;
