@@ -1,10 +1,54 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const Home = () => {
+function Home () {
+
+  const [auth, setAuth] = useState(false);
+  const [message, setMessage] = useState('');
+  const [name, setName] = useState('');
+
+
+
+  useEffect(()=>{
+    axios.get('http://localhost:5000/profilName')
+    .then(res => {
+        if(res.data.Status === "Success"){
+            setAuth(true)
+            setName(res.data.name)
+            Navigate('/login'); 
+        }else{
+            setAuth(false)
+            setMessage(res.data.Error);
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    });
+  }, [])
+
+  const handelogout = ()=> {
+    axios.get('http://localhost:5000/logout')
+    .then(res => {
+      // eslint-disable-next-line no-restricted-globals
+      location.reload(true);
+    }).catch(err => console.log(err))
+  }
   return (
     <div>
-      <h2>Profile</h2>
-      <p>This is the profile page.</p>
+        {
+          auth ?
+          <div>
+            <h2> hello {name} authorized</h2>
+            <button className='btn btn-danger' onClick={handelogout}>logout</button>
+          </div>
+          :
+          <div>
+            <h2> {message}</h2>
+            <Link to ="/login" className = 'btn btn-primary'>login</Link>
+          </div>
+        }
     </div>
   );
 };

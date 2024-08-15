@@ -13,6 +13,8 @@ function Signin() {
 
     const navigate = useNavigate();
 
+    axios.defaults.withCredentials = true ;
+
     const handleLogin = (event) => {
         event.preventDefault();
         axios.post('http://localhost:5000/login', values)
