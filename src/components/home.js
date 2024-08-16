@@ -41,12 +41,12 @@ function Home () {
           auth ?
           <div>
             <h2> hello {name} authorized</h2>
-            <button className='btn btn-danger' onClick={handelogout}>logout</button>
+            <Link to ="/" onClick={handelogout} className='btn btn-danger'>logout</Link>
           </div>
           :
           <div>
             <h2> {message}</h2>
-            <Link to ="/login" className = 'btn btn-primary'>login</Link>
+            <Link to ="/" className = 'btn btn-primary'>login</Link>
           </div>
         }
     </div>

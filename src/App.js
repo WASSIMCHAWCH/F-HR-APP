@@ -6,15 +6,17 @@ import History from './components/History';
 import Login from './components/login';
 import Signin from "./components/signin";
 import React from 'react';
+import { GradientBackground } from "./components/GradientBackground.js";
 
 const App = () => {
 
       
 return ( 
+    
 
-<Router>
+<Router >
   <Routes>
-    <Route path="/login" element={<Login />} />
+    <Route path="/" element={<Login />} />
         <Route
           path="/home"
           element={
@@ -49,6 +51,7 @@ return (
           }
       />
     </Routes>
+    <GradientBackground />
   </Router>
       
       );

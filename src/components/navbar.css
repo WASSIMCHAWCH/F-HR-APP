@@ -1,0 +1,63 @@
+/* Navbar container */
+.input {
+    position: fixed; /* Keeps the navbar at the top of the viewport */
+    top: 0; /* Aligns the navbar to the top of the viewport */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: rgba(13, 17, 23, 0.273); /* Semi-transparent dark background */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Add padding for spacing */
+    display: flex; /* Align buttons horizontally */
+    gap: 7.5px; /* Space between buttons */
+    z-index: 1000; /* Ensure the navbar is above other content */
+  }
+  
+  /* Styles for each button */
+  .value {
+    background-color: transparent; /* Transparent background */
+    border: none; /* Remove default button border */
+    padding: 10px; /* Padding inside buttons */
+    color: white; /* Text color */
+    display: flex; /* Align icon and text */
+    align-items: center; /* Vertically center items */
+    gap: 5px; /* Space between icon and text */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 4px; /* Rounded corners for buttons */
+    transition: background-color 0.2s ease; /* Smooth transition for background color */
+  }
+  
+  /* Hover effect for buttons */
+  .value:not(:active):hover,
+  .value:focus {
+    background-color: rgba(15, 22, 230, 0.442); /* Semi-transparent background on hover/focus */
+  }
+  
+  /* Active and focused button state */
+  .value:focus,
+  .value:active {
+    background-color: rgba(201, 28, 155, 0.521); /* Darker semi-transparent background */
+    outline: none; /* Remove focus outline */
+  }
+  
+  /* Underline effect for active and focused button */
+  .value::before {
+    content: "";
+    position: absolute;
+    bottom: -3px; /* Position underline just below the button */
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 5px; /* Rounded corners for underline */
+    opacity: 0; /* Hidden by default */
+  }
+  
+  /* Show underline on button focus/active state */
+  .value:focus::before,
+  .value:active::before {
+    opacity: 1; /* Show underline */
+  }
+  
+  /* SVG icon styles */
+  .value svg {
+    width: 15px; /* Size of the SVG icons */
+  }
