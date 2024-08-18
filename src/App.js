@@ -7,6 +7,7 @@ import Login from './components/login';
 import Signin from "./components/signin";
 import React from 'react';
 import { GradientBackground } from "./components/GradientBackground.js";
+import Header from './components/headar.js'; 
 
 const App = () => {
 
@@ -15,6 +16,7 @@ return (
     
 
 <Router >
+    <Header/>
   <Routes>
     <Route path="/" element={<Login />} />
         <Route

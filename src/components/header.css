@@ -1,0 +1,15 @@
+/* Header styling */
+.header {
+    position: fixed; /* Keeps the header fixed at the top */
+    top: 3px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Logo styling */
+.header .logo {
+    width: 150px;
+    height: auto;
+    max-width: 100%;
+}
+

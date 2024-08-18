@@ -1,26 +1,18 @@
-
-/*
-body {
-    font-family: Arial, sans-serif;
-    background-color: #27e6ff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-*/
-
+/* Center the login container in the middle of the page */
 .login-container {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Enhanced shadow effect */
     max-width: 400px;
     width: 100%;
+    position: absolute; /* Positioning the container absolutely */
+    top: 50%; /* Align container vertically in the middle */
+    left: 50%; /* Align container horizontally in the middle */
+    transform: translate(-50%, -50%); /* Center the container */
 }
 
+/* Style for the login form header */
 .login-form h2 {
     margin-bottom: 1rem;
     font-size: 24px;
@@ -28,16 +20,19 @@ body {
     color: #333;
 }
 
+/* Style for each form group */
 .form-group {
     margin-bottom: 1rem;
 }
 
+/* Style for the form labels */
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     color: #666;
 }
 
+/* Style for the form inputs */
 .form-group input {
     width: 100%;
     padding: 0.5rem;
@@ -46,21 +41,25 @@ body {
     font-size: 16px;
 }
 
+/* Style for the login button */
 .login-button {
     width: 100%;
     padding: 0.75rem;
-    background-color: #007bff;
+    background-color: #007bff; /* Primary button color */
     border: none;
     border-radius: 5px;
-    color: #000000;
+    color: #ffffff; /* White text color */
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
+/* Hover effect for the login button */
 .login-button:hover {
-    background-color: #ff0ab5;
+    background-color: #df0274; /* Darker blue on hover */
 }
 
+/* Style for error messages */
 .error {
     color: red;
     margin-bottom: 1rem;
