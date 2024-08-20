@@ -1,0 +1,11 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content {
+    width: 80%; /* Adjust width as needed */
+    text-align: center; /* Optional: centers text inside the content */
+}

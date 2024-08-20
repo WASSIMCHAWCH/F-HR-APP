@@ -13,7 +13,6 @@ const App = () => {
 
       
 return ( 
-    
 
 <Router >
     <Header/>
@@ -27,7 +26,7 @@ return (
               </Layout>
           }
       />
-          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signin />} />
         <Route
           path="/home"
           element={

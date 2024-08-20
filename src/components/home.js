@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
+import './app.css';
+
 
 function Home () {
 
@@ -36,11 +38,13 @@ function Home () {
     }).catch(err => console.log(err))
   }
   return (
-    <div>
+
+    <div className="centered-container">
+    <div className="content">
         {
           auth ?
           <div>
-            <h2> hello {name} authorized</h2>
+            <h2> hello {name} you are authorized to visite this page</h2>
             <Link to ="/" onClick={handelogout} className='btn btn-danger'>logout</Link>
           </div>
           :
@@ -50,6 +54,8 @@ function Home () {
           </div>
         }
     </div>
+  </div>
+
   );
 };
 

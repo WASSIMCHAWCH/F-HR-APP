@@ -1,11 +1,18 @@
 import React from 'react';
+import './app.css';
+
 
 const Calendar = () => {
   return (
-    <div>
-      <h2>Calendar</h2>
-      <p>This is the calendar page.</p>
-    </div>
+<div className="centered-container">
+  <div className="content">
+    <h2>Calendar</h2>
+    <p>This is the calendar page.</p>
+  </div>
+</div>
+
+
+
   );
 };
 
