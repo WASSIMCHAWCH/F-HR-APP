@@ -1,8 +1,39 @@
-import React from 'react';
-import "./navbar.css";
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import axios from 'axios';
+import "./navbar.css";
 
 const NavBar = () => {
+
+  const [name, setName] = useState('');
+
+
+
+  useEffect(()=>{
+    axios.get('http://localhost:5000/profilName')
+    .then(res => {
+        if(res.data.Status === "Success"){
+            setName(res.data.name)
+            Navigate('/login'); 
+        }else{
+          console.log("error to get names")
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    });
+  }, [])
+
+
+  const handelogout = ()=> {
+    axios.get('http://localhost:5000/logout')
+    .then(res => {
+      // eslint-disable-next-line no-restricted-globals
+      location.reload(true);
+    }).catch(err => console.log(err))
+  }
+
 
   return (
     <div className="input">
@@ -43,7 +74,7 @@ const NavBar = () => {
       </svg>
       Calendar
     </Link>
-    <Link className="value" to="/">
+    <Link className="value" to="/" onClick={handelogout}>
       <svg
         fill="#7D8590"
         viewBox="0 0 512 512"
@@ -53,7 +84,7 @@ const NavBar = () => {
           d="m492 32h-472c-11.03 0-20 8.97-20 20v428c0 11.03 8.97 20 20 20h472c11.03 0 20-8.97 20-20v-428c0-11.03-8.97-20-20-20zm-27 28.4 19.06 29.73h-59.2l-19.06-29.73zm-64.44 42.94h64.44v328h-64.44v-328zm-87.83-42.94 19.06 29.73h-59.2l-19.06-29.73zm-64.43 42.94h64.43v328h-64.43v-328zm-87.82-42.94 19.06 29.73h-59.2l-19.06-29.73zm-64.44 42.94h64.44v328h-64.44v-328zm363.84 376.6h-36.43v-37.43h36.43zm-73.59 0h-36.43v-37.43h36.43zm-73.58 0h-36.43v-37.43h36.43zm-73.59 0h-36.43v-37.43h36.43zm-73.58 0h-36.43v-37.43h36.43z"
         ></path>
       </svg>
-      Logout
+      Logout {name} 
     </Link>
   </div>
 );
