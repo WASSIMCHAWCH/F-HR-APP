@@ -2,20 +2,17 @@ import React from 'react';
 import './app.css';
 
 
-function Home () {
+function Dashboard () {
+
   return (
 
     <div className="centered-container">
     <div className="content">
-
-          <div>
-            <h2> you are authorized to visite this page </h2>
-          </div>
-
+    <h2> welcome to the dashboard </h2>
     </div>
   </div>
 
   );
 };
 
-export default Home;
+export default Dashboard;
