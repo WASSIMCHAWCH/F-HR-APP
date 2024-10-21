@@ -10,6 +10,7 @@ const ProtectedRoute = ({ roles, children }) => {
     });
     const [loading, setLoading] = useState(true); // Add a loading state
 
+
     useEffect(() => {
         // Fetch user role from token
         const getUserRole = async () => {

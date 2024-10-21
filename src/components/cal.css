@@ -1,0 +1,100 @@
+.calendar-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 100px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.calendar-header {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333;
+}
+
+.custom-calendar {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+}
+
+.react-calendar {
+  border-radius: 15px;
+  box-shadow: none;
+}
+
+.react-calendar__tile {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  margin: 5px;
+  padding: 10px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile--active {
+  background-color: #e9ecef;
+  border-radius: 8px;
+}
+
+.react-calendar__tile--now {
+  background: #007bff;
+  color: white;
+}
+
+.react-calendar__tile--highlight {
+  background: #ffdddd; /* Highlight Sundays with a subtle red background */
+  border-radius: 8px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #d9534f;
+}
+
+.date-info {
+  margin-top: 20px;
+  font-size: 16px;
+  background: #e9ecef;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.date-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.date-info p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Style for tiles that display leave descriptions */
+.leave-description {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #555;
+  background: #e9ecef;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+}
+
+.leave-highlight {
+  background-color: red !important;
+  color: white !important; /* Optional: Make text white for better visibility */
+}

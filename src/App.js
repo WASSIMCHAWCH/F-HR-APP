@@ -2,7 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/dashboard.js";
 import Layout from "./components/layout.js";
 import Home from './components/home';
-import Calendar from './components/Calendar';
+//import CalendarComponent from './components/Calendar';
+import CalendarPage from './components/cal.js';
+
 import History from './components/History';
 import Login from './components/login';
 import Signin from "./components/signin.js";
@@ -11,7 +13,6 @@ import Header from './components/headar.js';
 import React from 'react';
 import ProtectedRoute from './components/auth/auth.js';
 import Unauthorized from './components/auth/unauthorized.js';
-
 
 
 const App = () => {
@@ -55,7 +56,7 @@ return (
                     element={
                         <ProtectedRoute roles={['ADMIN', 'HR','User']}>
                         <Layout>
-                            <Calendar />
+                            <CalendarPage />
                         </Layout>
                         </ProtectedRoute>
                     }
