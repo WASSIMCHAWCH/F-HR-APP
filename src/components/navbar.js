@@ -1,108 +1,110 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import "./navbar.css";
+import './navbar.css';
 
 const NavBar = () => {
-
   const [name, setName] = useState('');
+  const navigate = useNavigate();
 
-
-
-  useEffect(()=>{
-    axios.get('http://localhost:5000/profilName')
-    .then(res => {
-        if(res.data.Status === "Success"){
-            setName(res.data.name)
-        }else{
-          Navigate('/'); 
-          console.log("error to get names")
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/profilName')
+      .then((res) => {
+        if (res.data.Status === 'Success') {
+          setName(res.data.name);
+        } else {
+          navigate('/');
+          console.log('Error fetching name');
         }
-    })
-    .catch(err => {
-        console.log(err)
-    });
-  })
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [navigate]);
 
-
-  const handelogout = ()=> {
-    axios.get('http://localhost:5000/logout')
-    .then(res => {
-      // eslint-disable-next-line no-restricted-globals
-      location.reload(true);
-    }).catch(err => console.log(err))
-  }
-
+  const handleLogout = () => {
+    axios
+      .get('http://localhost:5000/logout')
+      .then(() => {
+        window.location.reload(true);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
-    <div className="input">
-    
-    <Link className="value" to="/dashboard" >
-      <svg
-        viewBox="0 0 16 16"
-        xmlns="http://www.w3.org/2000/svg"
-        data-name="Layer 2"
-      >
-        <path
-          fill="#7D8590"
-          d="m1.5 13v1a.5.5 0 0 0 .3379.4731 18.9718 18.9718 0 0 0 6.1621 1.0269 18.9629 18.9629 0 0 0 6.1621-1.0269.5.5 0 0 0 .3379-.4731v-1a6.5083 6.5083 0 0 0 -4.461-6.1676 3.5 3.5 0 1 0 -4.078 0 6.5083 6.5083 0 0 0 -4.461 6.1676zm4-9a2.5 2.5 0 1 1 2.5 2.5 2.5026 2.5026 0 0 1 -2.5-2.5zm2.5 3.5a5.5066 5.5066 0 0 1 5.5 5.5v.6392a18.08 18.08 0 0 1 -11 0v-.6392a5.5066 5.5066 0 0 1 5.5-5.5z"
-        ></path>
-      </svg>
-      Dashboard
-    </Link>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        {/* Logo */}
+        <Link className="navbar-brand" to="/dashboard">
+          <img src="/assets/image/cytologo.png" alt="Logo" className="navbar-logo" />
+        </Link>
 
-    <Link className="value" to="/home" >
-      <svg
-        viewBox="0 0 16 16"
-        xmlns="http://www.w3.org/2000/svg"
-        data-name="Layer 2"
-      >
-        <path
-          fill="#7D8590"
-          d="m1.5 13v1a.5.5 0 0 0 .3379.4731 18.9718 18.9718 0 0 0 6.1621 1.0269 18.9629 18.9629 0 0 0 6.1621-1.0269.5.5 0 0 0 .3379-.4731v-1a6.5083 6.5083 0 0 0 -4.461-6.1676 3.5 3.5 0 1 0 -4.078 0 6.5083 6.5083 0 0 0 -4.461 6.1676zm4-9a2.5 2.5 0 1 1 2.5 2.5 2.5026 2.5026 0 0 1 -2.5-2.5zm2.5 3.5a5.5066 5.5066 0 0 1 5.5 5.5v.6392a18.08 18.08 0 0 1 -11 0v-.6392a5.5066 5.5066 0 0 1 5.5-5.5z"
-        ></path>
-      </svg>
-      Demande De Congé
-    </Link>
-    <Link className="value" to="/History">
-      <svg id="Line" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-        <path
-          fill="#7D8590"
-          id="XMLID_1646_"
-          d="m17.074 30h-2.148c-1.038 0-1.914-.811-1.994-1.846l-.125-1.635c-.687-.208-1.351-.484-1.985-.824l-1.246 1.067c-.788.677-1.98.631-2.715-.104l-1.52-1.52c-.734-.734-.78-1.927-.104-2.715l1.067-1.246c-.34-.635-.616-1.299-.824-1.985l-1.634-.125c-1.035-.079-1.846-.955-1.846-1.993v-2.148c0-1.038.811-1.914 1.846-1.994l1.635-.125c.208-.687.484-1.351.824-1.985l-1.068-1.247c-.676-.788-.631-1.98.104-2.715l1.52-1.52c.734-.734 1.927-.779 2.715-.104l1.246 1.067c.635-.34 1.299-.616 1.985-.824l.125-1.634c.08-1.034.956-1.845 1.994-1.845h2.148c1.038 0 1.914.811 1.994 1.846l.125 1.635c.687.208 1.351.484 1.985.824l1.246-1.067c.787-.676 1.98-.631 2.715.104l1.52 1.52c.734.734.78 1.927.104 2.715l-1.067 1.246c.34.635.616 1.299.824 1.985l1.634.125c1.035.079 1.846.955 1.846 1.993v2.148c0 1.038-.811 1.914-1.846 1.994l-1.635.125c-.208.687-.484 1.351-.824 1.985l1.067 1.246c.677.788.631 1.98-.104 2.715l-1.52 1.52c-.734.734-1.928.78-2.715.104l-1.246-1.067c-.635.34-1.299.616-1.985.824l-.125 1.634c-.079 1.035-.955 1.846-1.993 1.846zm-5.835-6.373c.848.53 1.768.912 2.734 1.135.426.099.739.462.772.898l.18 2.341 2.149-.001.18-2.34c.033-.437.347-.8.772-.898.967-.223 1.887-.604 2.734-1.135.371-.232.849-.197 1.181.089l1.784 1.529 1.52-1.52-1.529-1.784c-.285-.332-.321-.811-.089-1.181.53-.848.912-1.768 1.135-2.734.099-.426.462-.739.898-.772l2.341-.18h-.001v-2.148l-2.34-.18c-.437-.033-.8-.347-.898-.772-.223-.967-.604-1.887-1.135-2.734-.232-.37-.196-.849.089-1.181l1.529-1.784-1.52-1.52-1.784 1.529c-.332.286-.81.321-1.181.089-.848-.53-1.768-.912-2.734-1.135-.426-.099-.739-.462-.772-.898l-.18-2.341-2.148.001-.18 2.34c-.033.437-.347.8-.772.898-.967.223-1.887.604-2.734 1.135-.37.232-.849.197-1.181-.089l-1.785-1.529-1.52 1.52 1.529 1.784c.285.332.321.811.089 1.181-.53.848-.912 1.768-1.135 2.734-.099.426-.462.739-.898.772l-2.341.18.002 2.148 2.34.18c.437.033.8.347.898.772.223.967.604 1.887 1.135 2.734.232.37.196.849-.089 1.181l-1.529 1.784 1.52 1.52 1.784-1.529c.332-.287.813-.32 1.18-.089z"
-        ></path>
-        <path
-          id="XMLID_1645_"
-          fill="#7D8590"
-          d="m16 23c-3.859 0-7-3.141-7-7s3.141-7 7-7 7 3.141 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"
-        ></path>
-      </svg>
-      Historique
-    </Link>
-    <Link className="value" to="/Calendar">
-      <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-        <path
-          fill="#7D8590"
-          d="m109.9 20.63a6.232 6.232 0 0 0 -8.588-.22l-57.463 51.843c-.012.011-.02.024-.031.035s-.023.017-.034.027l-4.721 4.722a1.749 1.749 0 0 0 0 2.475l.341.342-3.16 3.16a8 8 0 0 0 11.313 11.312l3.158-3.158.343.342a1.749 1.749 0 0 0 2.475 0l4.72-4.721a.044.044 0 0 0 .034-.027c.011-.011.019-.024.031-.035l51.843-57.463a6.232 6.232 0 0 0 -.22-8.588zm-30.148 58.313a5.969 5.969 0 0 0 -8.463-8.463l-4.256 4.256-2.53-2.528 4.256-4.256a5.969 5.969 0 0 0 -8.463-8.463l-4.256 4.256-2.529-2.528 4.256-4.256a5.969 5.969 0 0 0 -8.463-8.463l-4.256 4.256-2.529-2.528 4.256-4.256a5.969 5.969 0 0 0 -8.463-8.463l-4.256 4.256-2.528-2.528 4.256-4.256a5.969 5.969 0 0 0 -8.463-8.463l-4.256 4.256-4.431-4.431 51.843-57.463 57.463 51.843-4.43 4.431-4.256-4.256a5.969 5.969 0 0 0 -8.463 8.463l4.256 4.256-2.528 2.528-4.256-4.256a5.969 5.969 0 0 0 -8.463 8.463z"
-        ></path>
-      </svg>
-      Calendar
-    </Link>
-    <Link className="value" to="/" onClick={handelogout}>
-      <svg
-        fill="#7D8590"
-        viewBox="0 0 512 512"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="m492 32h-472c-11.03 0-20 8.97-20 20v428c0 11.03 8.97 20 20 20h472c11.03 0 20-8.97 20-20v-428c0-11.03-8.97-20-20-20zm-27 28.4 19.06 29.73h-59.2l-19.06-29.73zm-64.44 42.94h64.44v328h-64.44v-328zm-87.83-42.94 19.06 29.73h-59.2l-19.06-29.73zm-64.43 42.94h64.43v328h-64.43v-328zm-87.82-42.94 19.06 29.73h-59.2l-19.06-29.73zm-64.44 42.94h64.44v328h-64.44v-328zm363.84 376.6h-36.43v-37.43h36.43zm-73.59 0h-36.43v-37.43h36.43zm-73.58 0h-36.43v-37.43h36.43zm-73.59 0h-36.43v-37.43h36.43zm-73.58 0h-36.43v-37.43h36.43z"
-        ></path>
-      </svg>
-      Logout {name} 
-    </Link>
-  </div>
-);
-}
+        {/* Toggler Button for Small Screens */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Navbar Links */}
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            {/* Demande De Congé Dropdown (Hover Effect) */}
+            <li className="nav-item dropdown">
+              <Link className="nav-link dropdown-toggle" to="#" id="navbarDropdown" role="button">
+                Demande De Congé
+              </Link>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <Link className="dropdown-item" to="/Congee">
+                    Congé par Jours
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/autorisation">
+                    Autorisation
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/maladie">
+                    Maladie
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            {/* Historique Link */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/History">
+                Historique
+              </Link>
+            </li>
+
+            {/* Calendar Link */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/Calendar">
+                Calendar
+              </Link>
+            </li>
+
+            {/* Logout Link */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/" onClick={handleLogout}>
+                Logout {name}
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
 export default NavBar;

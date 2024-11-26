@@ -67,34 +67,30 @@ const CalendarComponent = () => {
     }
   };
 
-  // Function to determine which tiles should be highlighted in red
-  const tileClassName = ({ date, view }) => {
-    if (view === 'month') {
-      const isLeaveDay = leaveHistory.some((item) => {
-        const startDate = new Date(item.date);
-        const endDate = new Date(startDate);
-        endDate.setDate(startDate.getDate() + item.delay); // Calculate the end date using the delay
+// Function to determine which tiles should be highlighted in red
+const tileClassName = ({ date, view }) => {
+  if (view === 'month') {
+    const isFirstLeaveDay = leaveHistory.some((item) => {
+      const startDate = new Date(item.date); // Get the start date of the leave
+      return date.toDateString() === startDate.toDateString(); // Check if the date matches the start date
+    });
 
-        // Check if the date is within the range of start and end dates
-        return date >= startDate && date <= endDate;
-      });
+    return isFirstLeaveDay ? 'leave-highlight' : null; // Apply the 'leave-highlight' class if it's the first leave day
+  }
+  return null;
+};
 
-      return isLeaveDay ? 'leave-highlight' : null; // Apply the 'leave-highlight' class if it's a leave day
-    }
-    return null;
-  };
-
-  return (
-    <div className="calendar-container">
-      <Calendar
-        onChange={onChange}
-        value={date}
-        className="custom-calendar"
-        tileContent={renderTileContent}
-        tileClassName={tileClassName} // Use the updated tileClassName function
-      />
-    </div>
-  );
+return (
+  <div className="calendar-container">
+    <Calendar
+      onChange={onChange}
+      value={date}
+      className="custom-calendar"
+      tileContent={renderTileContent}
+      tileClassName={tileClassName} // Use the updated tileClassName function
+    />
+  </div>
+);
 };
 
 export default CalendarComponent;

@@ -9,17 +9,20 @@ import History from './components/History';
 import Login from './components/login';
 import Signin from "./components/signin.js";
 import { GradientBackground } from "./components/GradientBackground.js";
-import Header from './components/headar.js';
 import React from 'react';
 import ProtectedRoute from './components/auth/auth.js';
 import Unauthorized from './components/auth/unauthorized.js';
+import Autorisation from './demande/autorisation.js';
+import Congee from './demande/congee.js';
+import Maladie from './demande/maladie.js';
+
+
 
 
 const App = () => {
 
 return (
     <Router>
-        <Header />
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route
@@ -67,6 +70,36 @@ return (
                         <ProtectedRoute roles={['ADMIN', 'HR','User']}>
                         <Layout>
                             <History />
+                        </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/congee"
+                    element={
+                        <ProtectedRoute roles={['ADMIN', 'HR','User']}>
+                        <Layout>
+                            <Congee />
+                        </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/autorisation"
+                    element={
+                        <ProtectedRoute roles={['ADMIN', 'HR','User']}>
+                        <Layout>
+                            <Autorisation />
+                        </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/maladie"
+                    element={
+                        <ProtectedRoute roles={['ADMIN', 'HR','User']}>
+                        <Layout>
+                            <Maladie />
                         </Layout>
                         </ProtectedRoute>
                     }

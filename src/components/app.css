@@ -1,11 +1,155 @@
-.centered-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* app.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-.content {
-  width: 80%; /* Adjust width as needed */
-  text-align: center; /* Optional: centers text inside the content */
+/* Form Container */
+.form-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f5f7fa3b;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Form Header */
+.form-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+/* Input Fields */
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ff378aa9;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+input[type="radio"] {
+  width: auto;
+  margin-right: 5px;
+}
+
+input[type="number"],
+input[type="date"],
+textarea {
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus,
+textarea:focus {
+  border-color: #007bff;
+}
+
+/* Specific Styles for "Justification" Fields */
+textarea {
+  min-height: 80px;
+  resize: vertical;
+  background-color: #f9f9f9;
+  border: 1px solid #ffc107;
+}
+
+textarea:focus {
+  background-color: #fff;
+}
+
+textarea::placeholder {
+  font-style: italic;
+  color: #999;
+}
+
+/* Styles for 'Nombre des Heures' and 'Nombre de Jours' */
+input[name="nombreDHeures"],
+input[name="nombreDeJours"] {
+  font-weight: bold;
+  background-color: #f9f9f9;
+}
+
+input[name="nombreDHeures"]:focus,
+input[name="nombreDeJours"]:focus {
+  background-color: #fff;
+}
+
+/* Radio Button Group */
+.form-group div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-group div label {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Total Congé Label */
+.form-group label[for="totalTimeOff"] {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* Submit Button */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #ff278cbb;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .form-container {
+    width: 90%;
+    padding: 15px;
+  }
+  
+  .form-group div {
+    flex-direction: column;
+  }
+
+  button[type="submit"] {
+    padding: 10px;
+    font-size: 15px;
+  }
 }
