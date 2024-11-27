@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/dashboard.js";
 import Layout from "./components/layout.js";
-import Home from './components/home';
 //import CalendarComponent from './components/Calendar';
 import CalendarPage from './components/cal.js';
 
@@ -44,15 +43,16 @@ return (
                     }
                 />
                 <Route
-                    path="/home"  // Add this route if you want /home to be valid
+                    path="/congee"  // Add this route if you want /home to be valid
                     element={
                         <ProtectedRoute roles={['ADMIN', 'HR','User']}>
                         <Layout>
-                            <Home />
+                            <Congee />
                         </Layout>
                         </ProtectedRoute>
                     }
                 />
+
                 <Route path="/signup" element={<Signin />} />
                 <Route
                     path="/calendar"
@@ -70,16 +70,6 @@ return (
                         <ProtectedRoute roles={['ADMIN', 'HR','User']}>
                         <Layout>
                             <History />
-                        </Layout>
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/congee"
-                    element={
-                        <ProtectedRoute roles={['ADMIN', 'HR','User']}>
-                        <Layout>
-                            <Congee />
                         </Layout>
                         </ProtectedRoute>
                     }
